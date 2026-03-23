@@ -1,109 +1,67 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Body */
 body {
-  font-family: "Segoe UI", Tahoma, sans-serif;
-  background: #f5f7fb;
-  color: #333;
-  padding: 15px;
-}
-
-/* Header */
-h2 {
-  text: bold;
-  text-align: center;
-  margin-bottom: 15px;
-  border: 25px;
-  color: mediumblue;
-}
-
-/* Form */
-input {
-  width: 100%;
-  padding: 12px;
-  margin: 6px 0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  outline: none;
-  font-size: 14px;
-}
-
-input:focus {
-  border-color: #4a90e2;
-}
-
-/* Button */
-button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  background: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button:hover {
-  background: #357bd8;
-}
-
-/* Grid */
-#videoGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
-}
-
-/* Card */
-.card {
-  background: white;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-}
-
-/* Image */
-.card img {
-  width: 100%;
-  height: 140px;
-  object-fit: cover;
-}
-
-/* Title */
-.card p {
-  padding: 10px;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-/* Mobile spacing */
-@media (max-width: 600px) {
-  body {
-    padding: 10px;
-  }
+  font-family: Arial;
+  padding: 20px;
+  background: #f5f5f5;
 }
 
 .form-box {
   background: white;
   padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  max-width: 320px;
+  margin: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
+.form-box input {
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.card p {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.delete-btn {
+  width: 100%;
+  padding: 8px;
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
 .toast {
   position: fixed;
   bottom: 20px;
@@ -113,21 +71,16 @@ button:hover {
   color: white;
   padding: 12px 20px;
   border-radius: 5px;
-  font-size: 14px;
-  opacity: 0.9;
 }
-.card {
-  transition: 0.2s;
+h2 {
+  text-align: center;
+  color: #007BFF; /* 🔵 Blue header */
 }
 
-.card:hover {
-  transform: scale(1.03);
-}
-.delete-btn {
+button {
   width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  background: red;
+  padding: 10px;
+  background: #007BFF; /* 🔵 Blue button */
   color: white;
   border: none;
   border-radius: 5px;
