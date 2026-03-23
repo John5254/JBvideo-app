@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JBvideoapp</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  
+  <h2>JB VIDEO LIBRARY</h2>
+  
+  <div class="form-box">
+    <input type="text" id="title" placeholder="Video title">
+    <input type="text" id="thumbnail" placeholder="Thumbnail URL">
+    <input type="text" id="videoURL" placeholder="Video URL">
+    <button id="addBtn" onclick="addVideo()">Add Video</button>
+  </div>
+  
+  <!-- 🔥 THIS WAS MISSING -->
+  <div id="videoGrid" class="grid"></div>
+  
+  <script type="module" src="app.js"></script>
+  
+</body>
+
+</html>
