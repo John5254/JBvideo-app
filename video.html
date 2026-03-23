@@ -4,63 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> WATCH VIDEO</title>
-
-  <style>
-    body {
-      background: #000;
-      color: white;
-      margin: 0;
-      font-family: Arial;
-    }
-
-    .top-bar {
-      display: flex;
-      align-items: center;
-      padding: 10px;
-      background: #111;
-    }
-
-    .back-btn {
-      background: #222;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-right: 10px;
-    }
-
-    h2 {
-      margin: 0;
-      font-size: 16px;
-    }
-
-    video {
-      width: 100%;
-      max-height: 80vh;
-      background: black;
-    }
-  </style>
+  <title>Player</title>
 </head>
 
 <body>
 
-<div class="top-bar">
-  <!-- 🔙 Back Button -->
-  <button class="back-btn" onclick="history.back()">⬅ Back</button>
-  <h2>Now Playing</h2>
-</div>
+<button onclick="history.back()">⬅ Back</button>
 
-<video id="player" controls></video>
+<div id="player"></div>
 
 <script>
   const params = new URLSearchParams(window.location.search);
   const url = params.get("url");
 
-  document.getElementById("player").src = url;
-</script>
+  const player = document.getElementById("player");
 
+  if (url.endsWith(".mp4")) {
+    player.innerHTML = `<video src="${url}" controls autoplay width="100%"></video>`;
+  }
+
+  else if (url.includes("youtube")) {
+    const id = url.split("v=")[1]?.split("&")[0];
+    player.innerHTML = `<iframe width="100%" height="300" src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe>`;
+  }
+
+  else if (url.includes("facebook")) {
+    player.innerHTML = `<iframe width="100%" height="300" src="https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}" allowfullscreen></iframe>`;
+  }
+
+  else {
+    player.innerHTML = "Unsupported video";
+  }
+</script>
 
 </body>
 
