@@ -14,9 +14,30 @@ const firebaseConfig = {
   appId: "1:148297257790:web:9cd03967f80b778c84526f"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+
+
+// 🔥 AUTO YOUTUBE THUMBNAIL
+window.autoThumbnail = function() {
+  const videoURL = document.getElementById("videoURL").value;
+  const thumbnailInput = document.getElementById("thumbnail");
+  
+  if (videoURL.includes("youtube.com") || videoURL.includes("youtu.be")) {
+    let videoId = "";
+    
+    if (videoURL.includes("watch?v=")) {
+      videoId = videoURL.split("watch?v=")[1].split("&")[0];
+    } else if (videoURL.includes("youtu.be/")) {
+      videoId = videoURL.split("youtu.be/")[1];
+    }
+    
+    if (videoId) {
+      thumbnailInput.value = `https://img.youtube.com/vi/${videoId}/0.jpg`;
+    }
+  }
+};
+
 
 // ✅ ADD VIDEO
 window.addVideo = function() {
@@ -34,12 +55,6 @@ window.addVideo = function() {
     return;
   }
   
-  if (!videoURL.startsWith("http")) {
-    showToast("Enter a valid video URL");
-    return;
-  }
-  
-  // Disable button
   button.disabled = true;
   button.innerText = "Adding...";
   
@@ -50,14 +65,12 @@ window.addVideo = function() {
       createdAt: Date.now()
     })
     .then(() => {
-      // Clear inputs
       titleInput.value = "";
       thumbnailInput.value = "";
       videoURLInput.value = "";
-      
       titleInput.focus();
       
-      showToast("Video added successfully!");
+      showToast("Video added!");
     })
     .catch(() => {
       showToast("Error adding video");
@@ -68,7 +81,8 @@ window.addVideo = function() {
     });
 };
 
-// ✅ LOAD + DELETE VIDEOS
+
+// ✅ LOAD + DELETE
 onValue(ref(db, "videos"), (snapshot) => {
   const grid = document.getElementById("videoGrid");
   if (!grid) return;
@@ -95,12 +109,10 @@ onValue(ref(db, "videos"), (snapshot) => {
       <button class="delete-btn">Delete</button>
     `;
     
-    // Open video
     div.onclick = () => {
       window.location.href = `video.html?url=${encodeURIComponent(data.videoURL)}`;
     };
     
-    // Delete button
     const deleteBtn = div.querySelector(".delete-btn");
     
     deleteBtn.onclick = (e) => {
@@ -110,15 +122,16 @@ onValue(ref(db, "videos"), (snapshot) => {
       if (!confirmDelete) return;
       
       remove(ref(db, "videos/" + key))
-        .then(() => showToast("Video deleted"))
-        .catch(() => showToast("Error deleting video"));
+        .then(() => showToast("Deleted"))
+        .catch(() => showToast("Error"));
     };
     
     grid.appendChild(div);
   });
 });
 
-// ✅ TOAST FUNCTION
+
+// ✅ TOAST
 function showToast(message) {
   const toast = document.createElement("div");
   toast.innerText = message;
@@ -129,4 +142,4 @@ function showToast(message) {
   setTimeout(() => {
     toast.remove();
   }, 3000);
-          }
+}
