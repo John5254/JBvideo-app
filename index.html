@@ -4,28 +4,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>JB Video App</title>
+  <title>JBvideoapp</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
-<h2>JB VIDEO LIBRARY</h2>
-
-<div class="form-box">
-  <input type="text" id="title" placeholder="Video title">
   
-  <input type="text" id="videoURL" placeholder="Video URL" oninput="autoThumbnail()">
+  <h2>JB VIDEO LIBRARY</h2>
   
-  <input type="text" id="thumbnail" placeholder="Thumbnail URL (auto for YouTube)">
+  <div class="form-box">
+    <input type="text" id="title" placeholder="Video title">
+    <input type="text" id="thumbnail" placeholder="Thumbnail URL">
+    <input type="text" id="videoURL" placeholder="Video URL">
+    <button id="addBtn" onclick="addVideo()">Add Video</button>
+  </div>
   
-  <button id="addBtn" onclick="addVideo()">Add Video</button>
-</div>
-
-<div id="videoGrid" class="grid"></div>
-
-<script type="module" src="app.js"></script>
-
+  <!-- 🔥 THIS WAS MISSING -->
+  <div id="videoGrid" class="grid"></div>
+  
+  <script type="module" src="app.js"></script>
+  
 </body>
 
 </html>
